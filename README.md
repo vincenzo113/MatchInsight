@@ -8,6 +8,10 @@ MatchInsight is a full-stack web application that analyzes Serie A 2024 season m
 
 The application features an intuitive React web frontend for data visualization and a robust Flask backend for data processing and machine learning operations.
 
+![Selecting Teams](./frontend/src/assets/stats.gif)
+
+
+
 ## ✨ Features
 
 - **📊 Statistical Analysis**: Comprehensive analysis of Serie A 2024 match data using advanced statistical methods
