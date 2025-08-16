@@ -15,8 +15,8 @@ import {
   Title
 } from 'chart.js';
 import '../style/SquadDetailsScreen.css'; 
+import { teamLogos } from '../components/SquadCard';
 
-// Registrazione Chart.js
 ChartJS.register(
   RadialLinearScale,
   PointElement,
@@ -42,72 +42,65 @@ const SquadDetailScreen = () => {
             .catch(error => console.error("Error fetching squad details:", error));
     }, [encodedTeamName]);
 
+    // Ottieni il logo dalla mappa
+    const logoUrl = teamLogos[encodedTeamName] || null;
+
     return (
         <div className="squad-detail-container">
             <h1>Dettagli Squadra</h1>
-            <h2>{encodedTeamName}</h2>
+            <div className="team-header">
+                {logoUrl && <img src={logoUrl} alt={`${encodedTeamName} logo`} className="team-logo" />}
+                <h2>{encodedTeamName}</h2>
+            </div>
             <h3>Statistiche Globali 2024</h3>
 
             <div className="charts-container">
                 <div className="radar-chart">
-                   <Radar
-  data={{
-    labels: ['Vittorie', 'Pareggi', 'Sconfitte', 'Goal Fatti', 'Goal Subiti'],
-    datasets: [
-      {
-        label: encodedTeamName,
-        data: [
-          squadDetails.vittorie_totali || 0,
-          squadDetails.pareggi_totali || 0,
-          squadDetails.sconfitte_totali || 0,
-          squadDetails.goal_fatti_totali || 0,
-          squadDetails.goal_subiti_totali || 0
-        ],
-        backgroundColor: 'rgba(34, 202, 236, 0.2)',
-        borderColor: 'rgba(34, 202, 236, 1)',
-        borderWidth: 2,
-        pointBackgroundColor: 'rgba(255, 255, 255, 0.8)',
-        pointBorderColor: 'rgba(34, 202, 236, 1)',
-        pointHoverBackgroundColor: 'rgba(34, 202, 236, 1)',
-        pointHoverBorderColor: '#fff'
-      }
-    ]
-  }}
-  options={{
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      r: {
-        angleLines: {
-          color: 'rgba(255,255,255,0.2)' // linee dei raggi visibili su sfondo scuro
-        },
-        grid: {
-          color: 'rgba(255,255,255,0.1)' // cerchi della griglia
-        },
-        pointLabels: {
-          color: '#ffffff', // etichette dei punti
-          font: { size: 14 }
-        },
-        ticks: {
-          color: '#ffffff', // numeri della scala se abilitati
-        },
-        beginAtZero: true
-      }
-    },
-    plugins: {
-      legend: {
-        labels: {
-          color: '#ffffff' // legenda visibile su sfondo scuro
-        }
-      },
-      tooltip: {
-        bodyColor: '#ffffff',
-        titleColor: '#22caec',
-        backgroundColor: 'rgba(0,0,0,0.7)'
-      }
-    }
-  }}
-/>
+                    <Radar
+                        data={{
+                            labels: ['Vittorie', 'Pareggi', 'Sconfitte', 'Goal Fatti', 'Goal Subiti'],
+                            datasets: [
+                                {
+                                    label: encodedTeamName,
+                                    data: [
+                                        squadDetails.vittorie_totali || 0,
+                                        squadDetails.pareggi_totali || 0,
+                                        squadDetails.sconfitte_totali || 0,
+                                        squadDetails.goal_fatti_totali || 0,
+                                        squadDetails.goal_subiti_totali || 0
+                                    ],
+                                    backgroundColor: 'rgba(34, 202, 236, 0.2)',
+                                    borderColor: 'rgba(34, 202, 236, 1)',
+                                    borderWidth: 2,
+                                    pointBackgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                    pointBorderColor: 'rgba(34, 202, 236, 1)',
+                                    pointHoverBackgroundColor: 'rgba(34, 202, 236, 1)',
+                                    pointHoverBorderColor: '#fff'
+                                }
+                            ]
+                        }}
+                        options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                r: {
+                                    angleLines: { color: 'rgba(255,255,255,0.2)' },
+                                    grid: { color: 'rgba(255,255,255,0.1)' },
+                                    pointLabels: { color: '#ffffff', font: { size: 14 } },
+                                    ticks: { color: '#ffffff' },
+                                    beginAtZero: true
+                                }
+                            },
+                            plugins: {
+                                legend: { labels: { color: '#ffffff' } },
+                                tooltip: {
+                                    bodyColor: '#ffffff',
+                                    titleColor: '#22caec',
+                                    backgroundColor: 'rgba(0,0,0,0.7)'
+                                }
+                            }
+                        }}
+                    />
                 </div>
 
                 <div className="bar-chart">

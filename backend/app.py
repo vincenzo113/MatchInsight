@@ -13,7 +13,7 @@ def load_csv(path):
 @app.route('/api/stats2024', methods=["GET"])
 def stats_2024():
     df = load_csv("data/team_stats.csv")
-    return jsonify(df.to_dict(orient='records'))  # Converte DataFrame in JSON
+    return jsonify(df.to_dict(orient='records'))  # Converte DataFrame in JSON passando per un dizionario
 
 @app.route('/api/prediction2025', methods=["GET"])
 def prediction_2025():

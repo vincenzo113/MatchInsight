@@ -52,8 +52,64 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* Header della squadra con logo */
+.team-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.team-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.team-header:hover::before {
+  left: 100%;
+}
+
+.team-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo della squadra */
+.team-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border: 2px solid rgba(34, 202, 236, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.team-logo:hover {
+  transform: scale(1.1) rotate(5deg);
+  border-color: rgba(34, 202, 236, 0.8);
+  box-shadow: 0 12px 35px rgba(34, 202, 236, 0.3);
+}
+
 .squad-detail-container h2 {
-  margin-bottom: 25px;
+  margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 600;
   color: #ffffff;
@@ -193,7 +249,7 @@ body {
   animation-delay: 0.1s;
 }
 
-.squad-detail-container h2 {
+.team-header {
   animation-delay: 0.2s;
 }
 
@@ -225,6 +281,16 @@ body {
     height: 400px;
     padding: 25px;
   }
+  
+  .team-header {
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .team-logo {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -246,6 +312,17 @@ body {
   .squad-detail-container h2::after {
     width: 60%;
   }
+  
+  .team-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .team-logo {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -262,6 +339,17 @@ body {
     height: 300px;
     padding: 15px;
     border-radius: 16px;
+  }
+  
+  .team-header {
+    padding: 15px;
+    gap: 10px;
+  }
+  
+  .team-logo {
+    width: 50px;
+    height: 50px;
+    padding: 8px;
   }
 }
 

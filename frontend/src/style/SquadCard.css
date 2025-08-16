@@ -1,0 +1,334 @@
+/* Importa font moderni da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Link wrapper senza decorazioni */
+.squad-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.squad-card-link:hover {
+  transform: translateY(-5px);
+}
+
+/* Card principale con design glassmorphism */
+.squad-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 24px;
+  height: 280px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Effetto di sfondo animato per la card */
+.squad-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(34, 202, 236, 0.08) 0%, rgba(255, 99, 132, 0.08) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.squad-card:hover::before {
+  opacity: 1;
+}
+
+/* Effetto shimmer sulla card */
+.squad-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: rotate(45deg);
+  transition: transform 0.6s ease;
+  z-index: 2;
+  opacity: 0;
+}
+
+.squad-card:hover::after {
+  transform: rotate(45deg) translate(50%, 50%);
+  opacity: 1;
+}
+
+/* Container del logo */
+.squad-logo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.squad-card:hover .squad-logo-container {
+  transform: scale(1.1) rotate(5deg);
+  border-color: rgba(34, 202, 236, 0.6);
+  box-shadow: 
+    0 15px 30px rgba(34, 202, 236, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Logo della squadra */
+.squad-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.squad-card:hover .squad-logo {
+  transform: scale(1.1);
+  filter: drop-shadow(0 6px 15px rgba(34, 202, 236, 0.4));
+}
+
+/* Logo fallback quando l'immagine non si carica */
+.squad-logo-fallback {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #22caec, #ff6384);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.squad-card:hover .squad-logo-fallback {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #1ba3c7, #e55a7a);
+}
+
+/* Nome della squadra */
+.squad-name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.squad-card:hover .squad-name {
+  color: #22caec;
+  transform: translateY(-2px);
+  text-shadow: 0 4px 15px rgba(34, 202, 236, 0.4);
+}
+
+/* Sottotitolo informativo */
+.squad-info {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #b8c5d1;
+  text-align: center;
+  opacity: 0.8;
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.squad-card:hover .squad-info {
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* Effetti specifici per diversi tipi di squadre */
+.squad-card.big-team {
+  border: 1px solid rgba(34, 202, 236, 0.3);
+}
+
+.squad-card.big-team::before {
+  background: linear-gradient(135deg, rgba(34, 202, 236, 0.12) 0%, rgba(138, 43, 226, 0.08) 100%);
+}
+
+.squad-card.big-team:hover {
+  border-color: rgba(34, 202, 236, 0.6);
+  box-shadow: 
+    0 20px 40px rgba(34, 202, 236, 0.2),
+    0 0 0 1px rgba(34, 202, 236, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Hover state generale */
+.squad-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Active state */
+.squad-card:active {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Loading state per i loghi */
+.squad-logo-loading {
+  width: 80px;
+  height: 80px;
+  border: 3px solid rgba(34, 202, 236, 0.3);
+  border-top: 3px solid #22caec;
+  border-radius: 50%;
+  animation: logoSpin 1s linear infinite;
+}
+
+/* Animazioni */
+@keyframes logoSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes cardPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% { 
+    box-shadow: 
+      0 15px 35px rgba(34, 202, 236, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+.squad-card.featured {
+  animation: cardPulse 3s ease-in-out infinite;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .squad-card {
+    height: 260px;
+    padding: 20px;
+  }
+  
+  .squad-logo-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 16px;
+  }
+  
+  .squad-logo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .squad-logo-fallback {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .squad-name {
+    font-size: 1.2rem;
+  }
+  
+  .squad-info {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .squad-card {
+    height: 240px;
+    padding: 16px;
+  }
+  
+  .squad-logo-container {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 14px;
+  }
+  
+  .squad-logo {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .squad-logo-fallback {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .squad-name {
+    font-size: 1.1rem;
+  }
+}
+
+/* Effetti speciali per touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .squad-card:hover {
+    transform: none;
+  }
+  
+  .squad-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Accessibilità */
+@media (prefers-reduced-motion: reduce) {
+  .squad-card,
+  .squad-logo-container,
+  .squad-logo,
+  .squad-name,
+  .squad-info,
+  .squad-card::before,
+  .squad-card::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Focus state per accessibilità */
+.squad-card:focus-within {
+  outline: 2px solid #22caec;
+  outline-offset: 2px;
+}
