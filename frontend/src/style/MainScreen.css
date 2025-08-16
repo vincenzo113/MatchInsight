@@ -1,0 +1,317 @@
+/* Importa font moderni da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* Stili generali per il Main Screen */
+.main-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  color: #e0e6ed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Effetto di sfondo animato */
+.main-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(34, 202, 236, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 99, 132, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Header del main screen */
+.main-header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.main-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #22caec, #ff6384, #8a2be2, #22caec);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease-in-out infinite;
+  text-shadow: 0 0 40px rgba(34, 202, 236, 0.3);
+  letter-spacing: -0.03em;
+  margin-bottom: 15px;
+}
+
+.main-subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #b8c5d1;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Container delle squadre */
+.teams-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+/* Animazioni di entrata per le card */
+.team-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.team-card-wrapper:nth-child(1) { animation-delay: 0.1s; }
+.team-card-wrapper:nth-child(2) { animation-delay: 0.2s; }
+.team-card-wrapper:nth-child(3) { animation-delay: 0.3s; }
+.team-card-wrapper:nth-child(4) { animation-delay: 0.4s; }
+.team-card-wrapper:nth-child(5) { animation-delay: 0.5s; }
+.team-card-wrapper:nth-child(6) { animation-delay: 0.6s; }
+.team-card-wrapper:nth-child(n+7) { animation-delay: 0.7s; }
+
+/* Bottone di ritorno con stile moderno */
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.back-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 16px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.back-button:hover::before {
+  left: 100%;
+}
+
+.back-button:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(34, 202, 236, 0.6);
+  box-shadow: 
+    0 20px 40px rgba(34, 202, 236, 0.2),
+    0 0 0 1px rgba(34, 202, 236, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  color: #22caec;
+}
+
+.back-button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Loading state */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  position: relative;
+  z-index: 2;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(34, 202, 236, 0.2);
+  border-top: 4px solid #22caec;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #b8c5d1;
+  opacity: 0.8;
+}
+
+/* Animazioni */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .teams-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-header {
+    padding: 40px 20px 30px;
+  }
+  
+  .main-subtitle {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+  
+  .teams-container {
+    padding: 0 15px 80px;
+  }
+  
+  .teams-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .back-button {
+    font-size: 1rem;
+    padding: 14px 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-header {
+    padding: 30px 15px 25px;
+  }
+  
+  .teams-container {
+    padding: 0 10px 60px;
+  }
+  
+  .back-button {
+    font-size: 0.95rem;
+    padding: 12px 30px;
+  }
+}
+
+/* Scroll personalizzato */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #22caec, #ff6384);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1ba3c7, #e55a7a);
+}
+
+/* Effetto particelle (opzionale) */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(34, 202, 236, 0.6);
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+}
+
+.particle:nth-child(2) {
+  background: rgba(255, 99, 132, 0.6);
+  animation-delay: -2s;
+  animation-duration: 18s;
+}
+
+.particle:nth-child(3) {
+  background: rgba(138, 43, 226, 0.6);
+  animation-delay: -4s;
+  animation-duration: 20s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}

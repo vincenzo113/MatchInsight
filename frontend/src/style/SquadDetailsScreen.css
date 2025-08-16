@@ -1,0 +1,299 @@
+/* Importa font moderni da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+/* Reset e stili di base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  color: #e0e6ed;
+}
+
+.squad-detail-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+/* Effetto di sfondo animato */
+.squad-detail-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(34, 202, 236, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255, 99, 132, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Titoli con gradiente e effetti */
+.squad-detail-container h1 {
+  margin-bottom: 15px;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, #22caec, #ff6384, #22caec);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(34, 202, 236, 0.3);
+  letter-spacing: -0.02em;
+}
+
+.squad-detail-container h2 {
+  margin-bottom: 25px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+}
+
+.squad-detail-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #22caec, transparent);
+  border-radius: 2px;
+}
+
+.squad-detail-container h3 {
+  margin-bottom: 40px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #b8c5d1;
+  opacity: 0.9;
+}
+
+/* Container dei grafici con effetto glassmorphism */
+.charts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+/* Stili per i singoli grafici */
+.radar-chart, .bar-chart {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px;
+  height: 450px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.radar-chart::before, .bar-chart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(34, 202, 236, 0.1) 0%, rgba(255, 99, 132, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.radar-chart:hover, .bar-chart:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.radar-chart:hover::before, .bar-chart:hover::before {
+  opacity: 1;
+}
+
+/* Stili specifici per il grafico radar */
+.radar-chart {
+  background: rgba(242, 242, 240, 0.03);
+  border: 1px solid rgba(34, 202, 236, 0.2);
+}
+
+.radar-chart:hover {
+  box-shadow: 
+    0 25px 50px rgba(34, 202, 236, 0.2),
+    0 0 0 1px rgba(34, 202, 236, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Stili specifici per il grafico a barre */
+.bar-chart {
+  background: rgba(255, 99, 132, 0.03);
+  border: 1px solid rgba(255, 99, 132, 0.2);
+}
+
+.bar-chart:hover {
+  box-shadow: 
+    0 25px 50px rgba(255, 99, 132, 0.2),
+    0 0 0 1px rgba(255, 99, 132, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Canvas dei grafici */
+.radar-chart canvas, .bar-chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* Animazioni */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applicazione animazioni */
+.squad-detail-container > * {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.squad-detail-container h1 {
+  animation-delay: 0.1s;
+}
+
+.squad-detail-container h2 {
+  animation-delay: 0.2s;
+}
+
+.squad-detail-container h3 {
+  animation-delay: 0.3s;
+}
+
+.charts-container {
+  animation-delay: 0.4s;
+}
+
+.radar-chart {
+  animation-delay: 0.5s;
+}
+
+.bar-chart {
+  animation-delay: 0.6s;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 10px;
+  }
+  
+  .radar-chart, .bar-chart {
+    height: 400px;
+    padding: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .squad-detail-container {
+    padding: 30px 15px;
+  }
+  
+  .charts-container {
+    gap: 25px;
+    margin-top: 30px;
+  }
+  
+  .radar-chart, .bar-chart {
+    height: 350px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+  .squad-detail-container h2::after {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .squad-detail-container {
+    padding: 20px 10px;
+  }
+  
+  .charts-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .radar-chart, .bar-chart {
+    height: 300px;
+    padding: 15px;
+    border-radius: 16px;
+  }
+}
+
+/* Effetti di loading */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.loading {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Scrollbar personalizzata */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #22caec, #ff6384);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #1ba3c7, #e55a7a);
+}
